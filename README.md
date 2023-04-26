@@ -3,6 +3,8 @@
 
 <img src="https://user-images.githubusercontent.com/68276889/233828641-54fca27a-d5b0-4e41-af70-655084619308.png" width="380"/>
 
+[**Blockchain Development Course**](https://softuni.bg/trainings/4126/blockchain-development-april-2023)
+
 1. Introduction to Blockchain
 
     - Blockchain Introduction
