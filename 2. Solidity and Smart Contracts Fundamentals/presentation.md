@@ -82,3 +82,31 @@ peer-to-peer network
     } 
 
     
+# Solidity
+
+# What is Solidity?
+* Main language for creating Smart Contracts on 
+Ethereum
+* Object-oriented, compiled, statically typed language
+* Supports inheritance, libraries and complex data 
+types – arrays, structs, mapings
+* Includes many built-in functions – msg object, 
+keccak, etc.
+* Open source and has a large and active community 
+of developers
+
+# Remix IDE
+
+ * Integrated Development Environment for Solidity 
+smart contracts
+* Web-based, but there is also a desktop version
+* Provides a user-friendly interface for writing, 
+debugging, deploying and verifying smart contracts
+* Includes various plugins, which provide additional 
+features
+* Suitable mostly for small contracts and testing
+some stuff
+
+## [Solidity Documentation](https://docs.soliditylang.org/en/v0.8.19/)
+## [Solidity Remix IDE](https://remix.ethereum.org/)
+
