@@ -121,3 +121,36 @@ some stuff
     * Lack of transparency and trust
     * Higher fees
 
+# Basic Contract Structure 
+ ....
+
+# Fund Raising
+
+    // SPDX-License-Identifier: MIT
+    pragma solidity ^0.8.4;
+    contract FundRaiser {
+    }
+    
+# Variable
+
+* Variables can be declared using `<type> <name>;`
+* Uninitialized variables have a default value 
+depending on their data type
+    * `bool:` `false`
+    * `int:` `uint:` `0`
+    * `address:` `0x0000000000000000000000000000000`
+    * `string:` `An empty string (`""`)`
+    * `bytes:` `bytes32:` `An empty byte array (`[]`)`
+
+# Identifiers
+* Used to identify a variable, function, event, 
+modifier, or other program element
+* Case-sensitive and can consist of letters, digits, and 
+underscores, but may NOT start with a digit
+* It is common convention to prefix private variables 
+with underscore
+
+        contract MyContract {
+            uint private _data; 
+            // ...
+        }

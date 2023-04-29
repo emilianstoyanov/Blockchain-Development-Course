@@ -2,28 +2,14 @@
 
 pragma solidity >=0.8.2 <0.9.0;
 
-/**
- * @title Storage
- * @dev Store & retrieve value in a variable
- * @custom:dev-run-script ./scripts/deploy_with_ethers.ts
- */
-contract Storage {
+contract FundRaiser {
+    // uint > positive number
+    // int > negative number
+    uint256 public shares;
 
-    uint256 number;
-
-    /**
-     * @dev Store value in variable
-     * @param num value to store
-     */
-    function store(uint256 num) public {
-        number = num;
+    // the function will only be available externally > external
+    function addShares(address receiver, uint256 amount) external  {
+        shares += amount;
     }
 
-    /**
-     * @dev Return value 
-     * @return value of 'number'
-     */
-    function retrieve() public view returns (uint256){
-        return number;
-    }
 }
