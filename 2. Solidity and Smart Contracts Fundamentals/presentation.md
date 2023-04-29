@@ -110,3 +110,14 @@ some stuff
 ## [Solidity Documentation](https://docs.soliditylang.org/en/v0.8.19/)
 ## [Solidity Remix IDE](https://remix.ethereum.org/)
 
+
+# Problem: Fund Raising 
+
+` Problem solved with code in 'contact.sol' file!`
+
+* Bob has a brilliant business idea
+* He needs the best way to raise funds
+* Traditional crowdfunding
+    * Lack of transparency and trust
+    * Higher fees
+
