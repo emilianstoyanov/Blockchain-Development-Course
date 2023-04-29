@@ -52,3 +52,33 @@ peer-to-peer network
 * Ethereum Node
 * Smart Contract
 * EVM
+
+# Smart Contracts
+ * ###   What is Smart Contract?
+    * A program that runs on the Ethereum blockchain
+    * Collection of code (functions) and data (state) that 
+    lives at a specific address
+    * Type of Ethereum account, but not controlled by a 
+    user
+    * It is permissionless and composable
+
+
+# Vending Machine
+   * ### With a specific input, a certain output is guaranteed
+
+
+    // Allow anyone to purchase cupcakes
+    function purchase(uint amount) public payable {
+    require(
+        msg.value >= amount * 1 ether,
+        "You must pay at least 1 ETH per cupcake"
+    );
+    require(
+        cupcakeBalances[address(this)] >= amount,
+        "Not enough cupcakes in stock to complete this purchase"
+    );
+        cupcakeBalances[address(this)] -= amount;
+        cupcakeBalances[msg.sender] += amount;
+    } 
+
+    
