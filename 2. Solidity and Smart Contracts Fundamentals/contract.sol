@@ -40,16 +40,17 @@ contract FundRaiser {
         //     revert Unauthorized("Now Owner");
         // }
         totalShares += msg.value;
-        shares[receiver] += msg.value;
+        shares[receiver] += amount;
         }
 
-        function getEther() external pure returns (uint256) {
-        return 1 ether;
+    // function returns multiple values
+    function getEther() external pure returns (uint256 amount, uint256 secondAmount) {
+        return (1 ether, 2 ether);
     }
 
     // the function displays the holdings of a given investor
-    function getShares(address investor) external view returns (uint256) {
-        return shares[investor];
+    function getShares(address investor) external view returns (uint256, uint256) {
+        return (shares[investor], totalShares);
     }
 
     // the function returns us our address
