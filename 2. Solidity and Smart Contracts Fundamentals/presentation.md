@@ -165,5 +165,28 @@ with underscore
 * internal - only this contract and contracts deriving from it can access
 * private - can be accessed only from this contract
 
+
+
 *Note*: As you can notice `private` is a subset of `internal` and `external` is a subset of `public`. 
 
+* pure - function declares that no state variable will be changed or read.
+* view - view function can be declared view in which case they promise not to modify the state. they can view the state variable but can't modify it
+
+Example:
+
+    // SPDX-License-Identifier: MIT
+    pragma solidity ^0.8.10;
+
+    contract ViewAndPure {
+        uint public x = 1;
+
+        // Promise not to modify the state.
+        function addToX(uint y) public view returns (uint) {
+            return x + y;
+        }
+
+        // Promise not to modify or read from the state.
+        function add(uint i, uint j) public pure returns (uint) {
+            return i + j;
+        }
+    }
