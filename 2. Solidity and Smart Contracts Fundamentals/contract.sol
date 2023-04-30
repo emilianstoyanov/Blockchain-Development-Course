@@ -8,10 +8,16 @@ contract FundRaiser {
     uint256 public totalShares;
     // we say what type the key and value will be
     mapping(address => uint) public shares;
-    address public owner = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+    // address public owner = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+    address public owner;
     uint256 public number;
 
-       enum Options {
+    // destroys the contract
+    function kill() external {
+        selfdestruct(payable(owner));
+    }
+
+    enum Options {
         One,
         Two,
         Three
@@ -30,11 +36,15 @@ contract FundRaiser {
         //     return;
         // }
         // If the address is the same as the owner's, to display a message
-        if(msg.sender == owner) {
-            revert Unauthorized("Now Owner");
+         // if(msg.sender == owner) {
+        //     revert Unauthorized("Now Owner");
+        // }
+        totalShares += msg.value;
+        shares[receiver] += msg.value;
         }
-        totalShares += amount;
-        shares[receiver] += amount;
+
+        function getEther() external pure returns (uint256) {
+        return 1 ether;
     }
 
     // the function displays the holdings of a given investor
