@@ -1,4 +1,12 @@
 
+* Creating Web3.0 Wallet Applications with JavaScript.
+* Reading data from the blockchain.
+* Integrating Web3.0 Wallet connections and creating transactions.
+* Looking at the most used architectures in decentralized application development.
+* How the connection between Web2.0 and Web3.0 is made.
+* What are some of the most famous blockchain protocols.
+
+
 ### Blockchain-Development-Course
 
 <img src="https://user-images.githubusercontent.com/68276889/233828641-54fca27a-d5b0-4e41-af70-655084619308.png" width="380"/>
