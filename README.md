@@ -1,3 +1,4 @@
+### Blockchain Development Course
 
 * Creating Web3.0 Wallet Applications with JavaScript.
 * Reading data from the blockchain.
@@ -7,7 +8,7 @@
 * What are some of the most famous blockchain protocols.
 
 
-### Blockchain-Development-Course
+
 
 <img src="https://user-images.githubusercontent.com/68276889/233828641-54fca27a-d5b0-4e41-af70-655084619308.png" width="380"/>
 
