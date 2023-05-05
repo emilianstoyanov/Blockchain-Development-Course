@@ -131,3 +131,158 @@ location"
     * calldata > `function myFunction(uint[] calldata myArray) external { }`
         * Read-only data location that is used to store the function arguments
 
+# Data Location
+
+## Value Types
+* Storage
+
+
+        contract SimpleStorage {
+            uint storedData; 
+            // ...
+        }
+
+* Memory
+
+        contract SimpleStorage {
+            uint storedData;
+
+            function memoryExample() {
+            uint memoryData;
+            }
+        }
+
+
+### *Specifier is not added!* 
+
+
+
+* storage
+
+
+        uint[] public arr = [1, 2, 3, 4, 5];
+        function checkRes() external returns (uint256 x) {
+            uint[] storage arrRef = arr;
+            arrRef[0] = 2;
+            return arr[0];
+        }
+
+
+    `output: x = 2`
+
+
+* memory
+
+        uint[] public arr = [1, 2, 3, 4, 5];
+        function checkRes() external view returns (uint256 x,
+        uint256 y) {
+            uint[] memory arrRef = arr;
+            arrRef[0] = 2;
+            return (arrRef[0], arr[0]);
+        }
+
+    `output: x = 2, y = 1 `
+
+
+* calldata – cheaper read-only option
+
+        function checkArr(uint256[] calldata arr) external view returns (uint256) {
+            return arr[0];
+        }
+
+# Arrays
+
+        uint[] public arr = [1, 2, 3, 4, 5];
+        function addNumber(uint256 value) external returns (uint256) {
+            arr.push(value);
+            return arr.length;
+        }
+
+# Allocating Memory Arrays
+
+* As opposed to storage arrays, it is not possible to 
+resize memory arrays
+
+
+        uint[] public arr = [1, 2, 3, 4, 5];
+        function checkRes() external view {
+            uint[] memory arrRef = arr;
+            arrRef[0] = 2;
+            arrRef.push(1);
+        }
+
+# Structs
+
+* Solidity provides a way to define new types in the 
+form of structs
+* Struct types can be used inside mappings and arrays 
+and they can themselves contain mappings and 
+arrays
+* It is not possible for a struct to 
+contain a member of 
+its own type
+
+        struct Vote {
+            address shareholder;
+            uint shares;
+            uint timestamp;
+        }
+
+
+# Voting
+
+* keep votes in storage
+
+        function vote(address shareholder) external {
+            votes.push(Vote({
+                shareholder: shareholder,
+                shares: 1000, // TODO: fetch real shares
+                timestamp: block.timestamp
+            }));
+
+            emit NewVote(shareholder, 1);
+        }
+
+
+# Mappings (Here we go again…)
+
+* Can NOT be allocated to memory
+
+        function checkMap() external view {
+            mapping(address => uint256) storage balanceRef = 
+            balance;
+        }
+
+# State vs Local variables
+
+        contract Test {
+            // state variables
+            uint256 storageVar;
+            uint256[] storageArr;
+
+            function test() external view {
+                // local variables
+                uint256 memoryVar = storageVar;
+                uint256[] storage arrReference = storageArr;
+                uint256[] memory arrCopy = storageArr;
+            }
+        }
+# Strings
+
+* Dynamic-size array of UTF-8 encoded characters
+
+        function test() external pure returns (string memory, bytes32) {
+            string memory hello = "Hello world!";
+            bytes32 helloTwo = "Hello world!";
+            return (hello, helloTwo);
+        }
+
+`Use bytes32 when having string up to 32 bytes!`
+
+# Inheritance
+
+* Create a new contract that inherits properties and 
+methods from an existing contract
+* When a contract inherits from other contracts, only a 
+single contract is created on the blockchain
+* State variables shadowing is considered as an error.
