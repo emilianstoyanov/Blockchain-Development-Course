@@ -286,3 +286,109 @@ methods from an existing contract
 * When a contract inherits from other contracts, only a 
 single contract is created on the blockchain
 * State variables shadowing is considered as an error.
+
+
+# Voting
+
+        contract Math {
+            function sum(uint256 a, uint256 b) internal pure returns
+            (uint256) {
+                return a + b;
+            }
+        }
+        contract Voting is Math {
+            function vote(address shareholder, bool position) external {
+                positive = sum(positive, 1000); 
+        }
+
+# Overriding
+
+* Base functions can be overridden if they are 
+marked as virtual
+* The overriding function must then use 
+the override keyword
+* Visibility can be changed from external to public
+only
+
+        // Math contract
+        function sum(uint256 a, uint256 b) internal pure virtual
+            returns (uint256) {
+                return a + b;
+        }
+
+        // Vote contract
+        function sum(uint256 a, uint256 b) internal pure override
+            returns (uint256) {
+                return a + b + b;
+        }
+
+
+# Abstract Contracts
+
+* Define a set of functions that must be implemented
+* Contracts must be marked as abstract when at least 
+one of their functions is not implemented or when 
+they do not provide arguments for all of their base 
+contract constructors
+
+        abstract contract Feline {
+            function foo() public pure virtual returns (bytes32);
+        }
+
+
+# Interfaces
+
+* Interfaces are similar to abstract contracts, but they 
+cannot have any functions implemented as well as 
+any state variables
+
+        interface Token {
+            struct Coin { string obverse; string reverse; } 
+            function transfer(address recipient, uint amount) external; 
+        }
+
+
+# Custom Modifiers
+
+## Custom Modifiers
+* Allow you to define custom conditions or checks that 
+must be met before or after executing a function
+
+
+        contract Owned {
+            address payable owner;
+            constructor() { owner = payable(msg.sender); }
+            modifier onlyOwner {
+                require( msg.sender == owner, "Only owner can call this function." );
+                _;
+            }
+            function register() public payable onlyOwner {
+                // code here
+            }
+        }
+
+# External Function Calls
+
+## External Function Calls
+
+* Functions of other contracts have to be called externally
+* All function arguments are copied to memory
+
+# Voting
+
+        import "./FundRaiser.sol"; // Import the other contract source code
+
+        FundRaiser fundRaiser; // Declare the contract variable
+
+        constructor(address _fundRaiser) {
+            // more code here...
+            // initialize
+            fundRaiser = FundRaiser(_fundRaiser);
+            }
+
+        function vote(bool position) external {
+            // Call other contract
+            // In case call revert, whole transaction will revert
+            (uint256 shares) = fundRaiser.getShares(msg.sender);
+            require(shares > 0, "Not a shareholder");
+        }
