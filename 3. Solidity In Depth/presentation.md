@@ -392,3 +392,91 @@ must be met before or after executing a function
             (uint256 shares) = fundRaiser.getShares(msg.sender);
             require(shares > 0, "Not a shareholder");
         }
+
+# Voting System Overview
+
+* Constructor
+* Reference Types
+* Data locations
+* Inheritance
+* Custom Modifiers
+* External Function Calls
+
+# External Function Calls
+
+* You can call payable functions as well
+* You can specify the amount of Wei or gas sent with 
+{value: 10, gas: 10000}
+* You need to use the 
+modifier payable
+
+# External Function Calls
+
+    contract InfoFeed {
+        function info() public payable returns (uint ret) {
+            return 42;
+        }
+    }
+    contract Consumer {
+        InfoFeed feed;
+        function setFeed(InfoFeed addr) public {
+            feed = addr;
+        }
+
+        function callFeed() public {
+            feed.info{value: 10, gas: 800}();
+        }
+    }
+
+
+
+# Libraries
+
+## Libraries
+
+* Way to share functionality between Solidity 
+contracts without creating a separate contract 
+instance
+* Not deployed as standalone contracts
+* Cannot access the state variables of the contract 
+that uses them, so any state information must be 
+passed to the library functions as parameters
+
+
+        struct Data { mapping(uint => bool) flags; }
+        library Set {
+            function insert(Data storage self, uint value) public returns (bool) {
+                if (self.flags[value]) return false;
+                self. flags[value] = true; return true;
+            }
+        }
+
+        contract C {
+            Data knownValues;
+            function register(uint value) public {
+                require(Set.insert(knownValues, value));
+            }
+        }
+
+# Using For
+
+* The directive using A for B; can be used to attach 
+functions (A) as member functions to any type (B)
+* These functions will receive the object they are called 
+on as their first parameter
+
+`using { insert } for Data;`
+
+`using Set for Data;`
+
+    contract C {
+        using Set for Data;
+
+        Data knownValues;
+        
+        function register(uint[] memory values) public {
+            for (uint i = 0; i < values.length; i++) {
+            require(knownValues.insert(values[i]), 
+            "Value already exists");
+        }
+    }
