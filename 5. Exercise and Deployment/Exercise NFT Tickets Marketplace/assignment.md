@@ -33,16 +33,16 @@ new events, and all event instances must be kept here
 
 * Additional Tasks
 
-    1. Deployment to Testnet
+    - Deployment to Testnet
 
         This allows developers to test the contract's functionality and ensure that it works as intended before 
         deploying it to the main network.
 
-    2. Code Verification
+    - Code Verification
 
         The process of matching a Smart Contract's source code to its on-chain bytecode.
 
-    3. NatSpec Documentation
+    - NatSpec Documentation
 
         NatSpec, or Natural Language Specification, is a standardized way of documenting smart contract functions 
         using natural language. This allows developers to easily understand the purpose and functionality of each 
