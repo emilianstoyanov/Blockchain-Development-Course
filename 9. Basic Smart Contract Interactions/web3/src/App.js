@@ -74,7 +74,7 @@ function App() {
       {
         provider ? (<button onClick={getBlockNumber}>Get Block Number </button>) : (<h1>Not connevted</h1>)
       }
-      {blockNumber ? <h1>{blockNumber}</h1> : <h1>Not connected</h1>}
+      {blockNumber !=null ? <h1>{blockNumber}</h1> : <h1>Not connected</h1>}
     </>
   );
 }
