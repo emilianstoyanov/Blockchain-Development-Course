@@ -9,6 +9,7 @@ import { ethers } from "ethers";
 function App() {
 
   const [count, setCount] = useState(0);
+  const [currentAccount, setCurrentAccount] = useState(null);
 
   function handleClick() {
     setCount((count) => count + 1);
@@ -25,6 +26,11 @@ function App() {
 // what MetaMask injects as window.ethereum into each page
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 
+provider
+  .send("eth_requestAccounts", [])
+  .then((accounts) => {
+  if (accounts.length > 0) setCurrentAccount(accounts[0]);
+  }).catch((e) => console.log(e));
 
   return (
     <>
@@ -33,6 +39,10 @@ const provider = new ethers.providers.Web3Provider(window.ethereum);
         <MyButton buttonClicked={handleClick} count={count} />
         <button buttonClicked={handleClick}> Connect </button>
       </div>
+      <div></div>
+      {
+        currentAccount ? <h1>{currentAccount}</h1> : <h1>Not connected</h1> 
+      }
     </>
   );
 }
