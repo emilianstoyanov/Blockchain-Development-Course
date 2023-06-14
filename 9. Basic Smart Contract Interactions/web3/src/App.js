@@ -41,8 +41,13 @@ function App() {
       })
       .catch((e) => console.log(e));
 
+  }
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  function getBlockNumber() {
+    // Look up the current block number
+    provider.getBlockNumber();
+    // 16987688
  
-    
   }
   return (
     <>
