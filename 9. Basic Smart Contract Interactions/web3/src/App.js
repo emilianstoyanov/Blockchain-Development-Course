@@ -16,6 +16,8 @@ function App() {
       <div className="App">
         <MyButton buttonClicked={handleClick} count={count} />
         <MyButton buttonClicked={handleClick} count={count} />
+        <button buttonClicked={handleClick}> Connect </button>
+
       </div>
     </>
   );
