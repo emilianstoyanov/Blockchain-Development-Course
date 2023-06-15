@@ -50,12 +50,13 @@ function App() {
   
   function getBlockNumber() {
     // Look up the current block number
-    if(!provider) {
+    if(!provider || !currentAccount) {
       return;
     }
 
-    provider.getBlockNumber().then((blockNumber) => {
-      setBlockNumber(blockNumber) 
+    provider.getBlockNumber(currentAccount).then((blockNumber) => {
+      console.log("Current block number: " + blockNumber);
+      setBlockNumber(blockNumber) ;
     });
 
   }
