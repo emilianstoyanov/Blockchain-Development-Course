@@ -55,10 +55,12 @@ function App() {
     }
 
     provider.getBlockNumber().then((blockNumber) => {
-      setBlockNumber(blockNumber);
+      setBlockNumber(blockNumber) 
     });
-    // 16987688
+
   }
+    
+   
 
   return (
     <>
@@ -68,12 +70,8 @@ function App() {
         <button onClick={handleConnection}> Connect </button>
       </div>
       <div></div>
-      {
-        currentAccount ? <h1>{currentAccount}</h1> : <h1>Not connected</h1> 
-      }
-      {
-        provider ? (<button onClick={getBlockNumber}>Get Block Number </button>) : (<h1>Not connevted</h1>)
-      }
+      {currentAccount ? <h1>{currentAccount}</h1> : <h1>Not connected</h1>}
+      {provider ? (<button onClick={getBlockNumber}>Get Block Number </button>) : (<h1>Not connevted</h1>)}
       {blockNumber !=null ? <h1>{blockNumber}</h1> : <h1>Not connected</h1>}
     </>
   );
