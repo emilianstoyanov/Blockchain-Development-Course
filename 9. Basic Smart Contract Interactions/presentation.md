@@ -342,3 +342,43 @@ if (accounts.length > 0) setCurrentAccount(accounts[0]);
 })
 .catch((e) => console.log(e));
 ```
+
+
+# Fetching Data from contracts
+
+- Once you have a Provider, you have a read-only 
+connection to the blockchain
+
+```js
+// Look up the current block number
+await provider.getBlockNumber()
+// 16987688
+// Get the balance of an accountby address
+balance = await provider.getBalance(”<address>")
+// { BigNumber: "182334002436162568" }
+```
+
+# Fetching data
+
+
+```js
+// Often you need to format the output to something more user-friendly,
+// such as in ether (instead of wei)
+ethers.utils.formatEther(balance)
+// '0.182334002436162568'
+// If a user enters a string in an input field, you may need
+// to convert it from ether (as a string) to wei (as a BigNumber)
+ethers.utils.parseEther("1.0")
+// { BigNumber: "1000000000000000000" }
+```
+
+# Wallet Interaction
+
+## Writing to the Blockchain
+
+- Create transactions and send them to the blockchain
+
+```js
+// Send 1 ether to an address.
+const tx = signer.sendTransaction({to: "<address>", value: ethers.utils.parseEther("1.0")});
+```
