@@ -149,3 +149,101 @@ className='photo'
         );
     }
     ```
+
+
+# Responding to Events
+
+- Declare event handler
+
+    ```js
+    function MyButton() {
+        function handleClick() {
+            alert("You clicked me!");
+        }
+
+        // Don't call the handler, just pass it
+        return <button onClick={handleClick}>Click
+        me</button>;
+    }
+    ```
+
+# Updating the screen
+
+- You want your component to "remember" 
+information and display it
+- Add state to your component
+
+    ```js
+    import { useState } from "react";
+    ```
+
+    ```js
+        // declare state variable
+    const [count, setCount] = useState(0);
+    ```
+
+    ```js
+    function handleClick() {
+        // update the state variable value
+        setCount(count + 1);
+    }
+    return (
+        <button onClick={handleClick}>
+            Clicked {count} times
+        </button>;
+    )
+    ```
+
+# Use Hooks
+
+- Functions starting with use are called Hooks
+- useState is a built-in Hook provided by React
+- Other built-in hooks
+- You can write your own hooks by combining the 
+existing ones
+
+# Sharing data between components
+
+- React allows components to communicate with each 
+other
+- TODO:
+    - Add a second button to the MyApp component
+    - Update the counters of both buttons, no matter which one is clicked
+
+
+```js
+export default function MyApp() {
+    return (
+        <>
+            <MyButton />
+            <MyButton />
+        </>
+    );
+}
+``` 
+
+```js
+function MyButton({ count, onClick }) {
+    return <button onClick={onClick}>Clicked 
+    {count} times</button>;
+}
+``` 
+
+
+
+```js
+export default function MyApp() {
+        const [count, setCount] = useState(0);
+
+        function handleClick() {
+            setCount(count + 1);
+        }
+
+    return (
+        <>
+            <MyButton count={count} onClick={handleClick} />
+            <MyButton count={count} onClick={handleClick} />
+        </>
+    );
+    }
+```
