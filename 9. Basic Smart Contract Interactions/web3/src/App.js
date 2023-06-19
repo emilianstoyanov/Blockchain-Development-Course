@@ -14,7 +14,7 @@ function App() {
   const [provider, setProvider] = useState(null);
   const [blockNumber, setBlockNumber] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  const [error, setError] = useState(false);
 
 
   useEffect(() => {
@@ -37,6 +37,13 @@ function App() {
     })
     .then((tx) =>{
       console.log(tx);
+      return tx.wait();
+    })
+    .then((reseipt) => {
+      setError("success!");
+    })
+    .catch((e) => {
+      setError(e.message);
     })
     .finally(() => {
       setLoading(false);
@@ -94,6 +101,9 @@ function App() {
       {blockNumber != null ? <h1>{blockNumber.toString()}</h1> : <h1>Not connected</h1>}
 
       <button onClick={sendTransaction}>Send Transaction</button>
+      {loading && <h1>Loading...</h1>}
+
+      {error}
     </>
   );
 }
