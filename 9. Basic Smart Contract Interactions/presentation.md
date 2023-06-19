@@ -247,3 +247,98 @@ export default function MyApp() {
     );
     }
 ```
+
+
+# Ethers.js
+
+## Ethereum Stack
+- End-User Application
+- Ethereum Client API
+- Ethereum Node
+- Smart Contract
+- EVM
+
+
+# Setup Dev Environment
+
+- Start Hardhat Network
+- Deploy Contract
+- Extract addresses and ABI information
+
+# Web3.0 Frontend Application
+
+- Web application that interacts with decentralized 
+application.
+
+- ~~Server~~ Smart contracts
+
+- Combines traditional web development technologies 
+with Web3-related libraries, wallet integrations, and 
+blockchain interactions
+
+
+# Ethers.js
+
+- Implements 3 main classes
+- Provider
+    - Provides an abstraction for a connection to the Ethereum 
+    Network
+    - Read-only access to the Blockchain and its status.
+- Signer
+    - Usually in some way directly or indirectly has access to a 
+    private key
+    - Can sign messages and transactions to authorize the 
+    network to charge your account ether to perform 
+    operations
+
+- Contract
+    - Represents a connection to a specific contract on the 
+    Ethereum Network, so that applications can use it like a 
+    normal JavaScript object.
+
+
+# Install Ethers.js
+
+- Suitable for demo purposes only
+- Serve from own server in production
+
+   ```js
+    npm i ethers
+
+    import { ethers } from "ethers";
+   ```
+
+# Wallet Connection
+
+- Wallet is the application that manage your keys 
+(account)
+- To execute transactions your Web3.0 app needs 
+signatures from your keys
+
+# Connecting to Ethereum: MetaMask
+
+- TODO: Add localhost network to Metamask
+
+
+# Connecting to Ethereum: MetaMask
+
+```js
+if (!window.ethereum) {
+    alert("install MetaMask");
+    return;
+}
+// A Web3Provider wraps a standard Web3 provider, which is
+// what MetaMask injects as window.ethereum into each page
+const provider = 
+new ethers.providers.Web3Provider(window.ethereum);
+```
+
+
+```js
+provider
+    .send("eth_requestAccounts", [])
+    .then((accounts) => {
+if (accounts.length > 0) setCurrentAccount(accounts[0]);
+})
+.catch((e) => console.log(e));
+```
