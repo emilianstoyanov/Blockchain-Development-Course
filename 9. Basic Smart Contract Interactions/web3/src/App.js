@@ -13,6 +13,8 @@ function App() {
   const [currentAccount, setCurrentAccount] = useState(null);
   const [provider, setProvider] = useState(null);
   const [blockNumber, setBlockNumber] = useState(null);
+  const [loading, setLoading] = useState(false);
+
 
 
   useEffect(() => {
@@ -28,9 +30,16 @@ function App() {
   function sendTransaction() {
     // Send 1 ether to an address.
     const signer = provider.getSigner();
-    const tx = signer.sendTransaction({
-    to: "<address>",
-    value: ethers.utils.parseEther("1.0")
+    setLoading(true);
+    signer.sendTransaction({
+    to: "0x5C64fe5B7652c13CC4a645B1f6F9645F125985D5",
+    value: ethers.utils.parseEther("1.0"),
+    })
+    .then((tx) =>{
+      console.log(tx);
+    })
+    .finally(() => {
+      setLoading(false);
     });
   }
 
@@ -83,6 +92,8 @@ function App() {
       {currentAccount ? <h1>{currentAccount}</h1> : <h1>Not connected</h1>}
       {provider ? (<button onClick={getBlockNumber}>Get Block Number </button>) : (<h1>Not connevted</h1>)}
       {blockNumber != null ? <h1>{blockNumber.toString()}</h1> : <h1>Not connected</h1>}
+
+      <button onClick={sendTransaction}>Send Transaction</button>
     </>
   );
 }
