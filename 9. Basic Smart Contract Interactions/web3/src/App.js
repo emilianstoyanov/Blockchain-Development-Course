@@ -25,12 +25,21 @@ function App() {
     setCount((count) => count + 1);
   }
 
+  function sendTransaction() {
+    // Send 1 ether to an address.
+    const signer = provider.getSigner();
+    const tx = signer.sendTransaction({
+    to: "<address>",
+    value: ethers.utils.parseEther("1.0")
+    });
+  }
+
   function handleConnection() {
     if (!window.ethereum) {
       alert("install MetaMask");
       return;
     }
-  
+
 
     // A Web3Provider wraps a standard Web3 provider, which is
     // what MetaMask injects as window.ethereum into each page
@@ -47,21 +56,21 @@ function App() {
       .catch((e) => console.log(e));
 
   }
-  
+
   function getBlockNumber() {
     // Look up the current block number
-    if(!provider || !currentAccount) {
+    if (!provider || !currentAccount) {
       return;
     }
 
     provider.getBlockNumber(currentAccount).then((blockNumber) => {
       console.log("Current block number: " + blockNumber);
-      setBlockNumber(blockNumber) ;
+      setBlockNumber(ethers.utils.formatEther(blockNumber));
     });
 
   }
-    
-   
+
+
 
   return (
     <>
@@ -73,7 +82,7 @@ function App() {
       <div></div>
       {currentAccount ? <h1>{currentAccount}</h1> : <h1>Not connected</h1>}
       {provider ? (<button onClick={getBlockNumber}>Get Block Number </button>) : (<h1>Not connevted</h1>)}
-      {blockNumber !=null ? <h1>{blockNumber}</h1> : <h1>Not connected</h1>}
+      {blockNumber != null ? <h1>{blockNumber.toString()}</h1> : <h1>Not connected</h1>}
     </>
   );
 }
