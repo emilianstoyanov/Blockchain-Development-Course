@@ -37,7 +37,7 @@
     function MyButton() {
         return <button>I'm a button</button>;
     }
-    
+    ```
 
 # Nesting Components
 
@@ -53,7 +53,6 @@
             </div>
         );
     }
-
     ```
 
 # JSX
@@ -80,5 +79,73 @@ class='photo'
 …
 </ul>
 </>
-
 ```
+
+
+# JSX Rules
+
+-  Close all the tags
+
+
+```jsx
+<>
+<h1>Hedy Lamarr's Todos</h1>
+<img
+src='https://i.imgur.com/yXOvdOSs.jpg'
+alt='Hedy Lamarr'
+class='photo'
+// img is not closed
+<ul>
+</ul>
+</>
+```
+
+# JSX Rules
+
+- camelCase all most of the things
+
+
+
+```jsx
+<img
+src='https://i.imgur.com/yXOvdOSs.jpg'
+alt='Hedy Lamarr'
+className='photo'
+/>
+```
+
+# Adding styles
+
+- Write CSS in a separate file
+
+    ```js
+    <img className='avatar' />
+    ```
+
+- Import in your component
+
+    ```js
+    import "./MyApp.css";
+
+    /* In your CSS */
+    .avatar {
+        border-radius: 50%;
+    }
+    ```
+
+# Displaying data
+
+- Curly braces
+- "Escape back" into JavaScript
+
+    ```js
+    export default function MyApp() {
+        const user = "Mitko";
+        return (
+            <>
+                <h1>My name is </h1>
+                <h1>{user.name}</h1>
+            </>
+        );
+    }
+    ```
