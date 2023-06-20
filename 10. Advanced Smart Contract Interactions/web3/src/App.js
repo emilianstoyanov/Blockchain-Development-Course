@@ -2,15 +2,16 @@ import "./App.css";
 
 import { init, useConnectWallet } from "@web3-onboard/react";
 import injectedModule from "@web3-onboard/injected-wallets";
-import { ethers } from "ethers";
+// import { ethers } from "ethers";
 
 const API_KEY = "d_7FIHXdQXSHbXSG6kwK8CnuuUaab5vO";
 const rpcUrl = `https://eth-sepolia.g.alchemy.com/v2/${API_KEY}`;
 
+const injected = injectedModule();
 
 // initialize Onboard
 init({
-  wallets: [injectedModule],
+  wallets: [injected],
   chains: [
     {
       id: "0xaa36a7",
