@@ -248,6 +248,9 @@ in their wallet
 wallets
 * QR code or deep linking
 
+
+[WebPack problems](https://alchemy.com/blog/how-to-polyfill-node-core-modules-in-webpack-5)
+
 ```js
 GENERATE_SOURCEMAP=false
 ```
