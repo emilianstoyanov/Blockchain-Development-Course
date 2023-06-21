@@ -161,3 +161,106 @@ in their wallet
 
     const contract = new ethers.Contract(ERC20_ADDRESS, ERC20_ABI, signer);
     ```
+
+
+## Ethers.js Contract instance
+
+* Create a tx invoking contract method
+
+
+    ```js
+    contract
+            .transfer(sendTo, ethers.utils.parseEther(amount))
+            .then((tx) => {
+                console.log("Transaction:", tx);
+                return tx.wait();
+            })
+    ```
+
+* Query contract data
+
+
+    ```js
+    useEffect(() => {
+        const contract = getContract();
+        contract
+            .balanceOf(connectedWallets[0].accounts[0].address)
+            .then((newBalance) => {
+            setBalance(ethers.utils.formatEther(newBalance));
+            });
+    }, [connectedWallets, getContract]);
+    ```
+
+*  Listening to events
+
+
+     ```js
+    const filter = contract.filters.Transfer(null, myAddress);
+    // Receive an event when that filter occurs
+    contract.on(filter, (from, _to, amount, event) => {
+        // The to will always be "myAddress"
+        // Show EventModal
+    });
+    ```
+
+* Fetch historical events
+
+
+
+     ```js
+    const filter = contract.filters.Transfer(myAddress, null);
+    // List all transfers sent from me in a specific block range
+    contract.queryFilter(filter, 0, "latest")
+        .then((fetchedTransfers) => {
+            fetchedTransfers = fetchedTransfers.
+                map((transfer) => {
+                transfer.value =
+                    transfer.args.value.toString();
+                    transfer.from = transfer.args.from;
+            return transfer;
+        });
+    });
+    ```
+
+* Estimate gas
+
+    ```js
+    const filter = contract.filters.Transfer(myAddress, null);
+    // List all transfers sent from me in a specific block range
+    contract.queryFilter(filter, 0, "latest")
+        .then((fetchedTransfers) => {
+            fetchedTransfers = fetchedTransfers.
+                map((transfer) => {
+                    transfer.value =
+                        transfer.args.value.toString();
+                        transfer.from = transfer.args.from;
+            return transfer;
+        });
+    });
+    ```
+
+# Wallet Connect
+
+## Wallet Connect
+
+* Open Source Protocol
+* Connects decentralized applications with mobile 
+wallets
+* QR code or deep linking
+
+```js
+GENERATE_SOURCEMAP=false
+```
+
+```js
+import walletConnectModule from "@web3-onboard/walletconnect";
+
+// init
+const walletConnect = walletConnectModule();
+
+// add to config options
+wallets: [injected, walletConnect],
+```
+
+
+
