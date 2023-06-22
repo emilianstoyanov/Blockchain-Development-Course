@@ -2,6 +2,7 @@ import "./App.css";
 
 import { init, useConnectWallet } from "@web3-onboard/react";
 import injectedModule from "@web3-onboard/injected-wallets";
+import ChainModal from "./components/ChainModal/ChainModal";
 // import { ethers } from "ethers";
 
 const API_KEY = "d_7FIHXdQXSHbXSG6kwK8CnuuUaab5vO";
@@ -29,13 +30,33 @@ init({
 function App() {
   const [{ wallet, connecting }, connect, disconnect] = useConnectWallet()
 
+  function handleDisconnect() {
+    if (!wallet) {
+      return;
+    }
+
+    disconnect(wallet).catch((error) => {
+        console.error(error);
+    });
+    
+  }
+  if(wallet) {
+    return (
+      <div className="App">
+        <ChainModal onDisconnect={handleDisconnect}/>
+        <button
+          disabled={connecting}
+          onClick={() => (disconnect(wallet))}
+          >
+          {connecting ? "connecting" : "disconnect"}
+      </button>
+      </div>
+    )
+  }
   return (
     <div className="App">
-      <button
-        disabled={connecting}
-        onClick={() => (wallet ? disconnect(wallet) : connect())}
-        >
-        {connecting ? "connecting" : wallet ? "disconnect" : "connect"}
+      <button disabled={connecting} onClick={() => connect()}>
+        {connecting ? "connecting" : "connect"}
     </button>
     </div>
   )
