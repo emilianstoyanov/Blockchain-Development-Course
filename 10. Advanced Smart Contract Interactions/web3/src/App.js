@@ -19,7 +19,6 @@ const walletConnect = walletConnectModule();
 
 // initialize Onboard
 init({
-  // init option
   connect: {
     autoConnectLastWallet: true,
   },
@@ -72,27 +71,19 @@ function App() {
       </div>
     );
   }
-  
-  if(wallet) {
-    return (
-      <div className="App">
-        <Navbar onDisconnect={handleDisconnect} />
-        <button
-          disabled={connecting}
-          onClick={() => (disconnect(wallet))}
-          >
-          {connecting ? "connecting" : "disconnect"}
-      </button>
-      </div>
-    )
-  }
+
   return (
-    <div className="App">
-      <button disabled={connecting} onClick={() => connect()}>
-        {connecting ? "connecting" : "connect"}
-    </button>
+    <div className='App'>
+      <Navbar onDisconnect={handleDisconnect} />
+      <div className='main'>
+        <Button
+          disabled={connecting}
+          handleClick={handleConnect}
+          text={"Connect"}
+        />
+      </div>
     </div>
-  )
+  );
 }
 
 export default App;
